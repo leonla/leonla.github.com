@@ -140,11 +140,11 @@ li{
 	border: 1px #E1E1E1 solid;
 	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.1);
 
-
 }
 
 #b1{
 	position:relative;
+	bottom:0px;
 	left:-220px;
 	margin-left: auto;
 	margin-right: auto;
@@ -188,6 +188,99 @@ h2{
 	margin-top: 30px;
 	font-size: 20px;
 	margin-bottom: 27px;
+}
+
+span{
+	color: #369;
+	text-decoration: underline;
+}
+
+
+.headercontainer{
+	width:900px;
+	height:200px;
+	margin-right: auto; margin-left: auto;
+
+}
+
+#head1{
+}
+
+
+#head2{
+		display:none;
+}
+
+#head2 h1{
+	font-size:42px;
+	line-height: 40px;
+}
+
+#head2 h2{
+	font-size: 20px;
+	width: 900px;
+	margin-right: auto; margin-left: auto;
+	margin-top: 20px;
+	padding-bottom:5px; 
+
+}
+
+#head3{
+	display: none;
+}
+
+#head3 h1{
+	font-size:45px;
+	line-height: 40px;
+}
+
+#head3 h2{
+	font-size: 18px;
+	width: 900px;
+	margin-right: auto; margin-left: auto;
+	margin-top: 20px;
+
+}
+
+#head4{
+	display: none;
+}
+
+#head4 h1{
+	font-size:45px;
+	line-height: 40px;
+	width:900px;
+}
+
+#head4 h2{
+	font-size: 18px;
+	width: 800px;
+	margin-right: auto; margin-left: auto;
+	margin-top: 20px;
+
+}
+
+#arrow1{
+	position:absolute;
+	right:-20px;
+	top:-30px;
+	display:none;
+
+}
+
+#arrow2{
+	position:absolute;
+	right:-20px;
+	top:-30px;
+	display:none;
+}
+
+#arrow3{
+	position:absolute;
+	left:-20px;
+	top:-30px;
+	display:none;
+
 }
 
 
@@ -292,4 +385,9 @@ h5{
 	width:auto;
 	top:0;bottom:0;right:0;left:0;
 	display: inline;
+}
+
+.work{
+	position:fixed;
+	bottom:0px;
 }
