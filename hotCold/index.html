@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+		<title> Hot and Cold Game </title>
+		<link rel="stylesheet" type="text/css" href="stylesheet.css">
+		<link href='http://fonts.googleapis.com/css?family=Finger+Paint' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+	<div id="mainContainer">
+		<header>
+			<div id="header">
+				<img src="hot.png"/>
+				<img src ="or.png"/>
+				<img src="cold.png"/>
+			</div>
+		</header>
+		<div id="instructions">
+				<p> Hello there, this is the hot and cold game. The instructions are very simple: </p>
+				<ol>
+					<li> Press the start game button </li>
+					<li> The computer chooses a random number between 1-100</li>
+					<li>First guess: you are told if you are right or wrong </li>
+					<li>After that, every guess you make you are told if you got warmer of colder</li>
+				</ol>
+			<button id="startGame"> start a new game </button>
+			<div id="game">
+					<h1>The chosen number is : <span> ? </span></h1>
+					<form>
+						your guess: <input type="text" name="guess" id="guess">
+						<button id="guessButton" type="button"> take a guess </button>
+					</form>
+			</div>
+		</div>
+		<div id="colder"> <p>getting colder</p> </div>
+		<div id="warmer"> <p>getting warmer</p> </div>
+
+	</div>
+
+<script src="jquery.min.js"></script>
+<script src="application.js"></script>
+</body>
+
+</html>
