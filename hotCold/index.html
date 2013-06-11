@@ -15,7 +15,7 @@
 				<img src="cold.png"/>
 			</div>
 		</header>
-		<div id="instructions">
+		<div id="instructions" class="game">
 				<p> Hello there, this is the hot and cold game. The instructions are very simple: </p>
 				<ol>
 					<li> Press the start game button </li>
@@ -24,16 +24,25 @@
 					<li>After that, every guess you make you are told if you got warmer of colder</li>
 				</ol>
 			<button id="startGame"> start a new game </button>
-			<div id="game">
-					<h1>The chosen number is : <span> ? </span></h1>
-					<form>
-						your guess: <input type="text" name="guess" id="guess">
-						<button id="guessButton" type="button"> take a guess </button>
-					</form>
-			</div>
 		</div>
-		<div id="colder"> <p>getting colder</p> </div>
-		<div id="warmer"> <p>getting warmer</p> </div>
+
+		<div class="game" id="gameMain">
+				<h1>The chosen number is : <span id="question"> ? </span></h1>
+				<form>
+					your guess: <input type="text" name="guess" id="guess">
+					<button id="guessButton" type="button"> take a guess </button>
+				</form>
+		</div>
+		<div class="game" id="msg">
+			<p> this is the massage that I want</p>
+			<button id="next" type="button"> try again </button>
+
+		</div>
+
+		<div id="track" class="game">
+			<p> guesses tracker: </p>
+			 <ul></ul> 
+		</div>
 
 	</div>
 

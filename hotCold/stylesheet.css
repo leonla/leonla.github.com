@@ -29,7 +29,6 @@ footer, header, hgroup, menu, nav, section {
 
 
 ol, ul {
-	list-style: none;
 }
 
 blockquote, q {
@@ -53,7 +52,8 @@ table {
 	left: 0;
 	top:0;
 	bottom:0;
-	background-image: radial-gradient(circle farthest-corner at center, #FFFFFF 0%, #5FEF2B 100%);
+ background-image:url("green.jpg");
+
 }
 
 header{
@@ -74,7 +74,7 @@ img{
 
 #instructions{
 	margin-top: 20px;
-	border:solid #0CA821 4px;
+	border:solid blue 4px;
 	border-radius: 20px;
 	width:700px;
 	margin-right: auto;
@@ -82,6 +82,7 @@ img{
 	padding: 10px;
 	background-color: #79F592;
 	font-family: 'Finger Paint', cursive;
+	height: auto;
 }
 
 ol{
@@ -99,17 +100,29 @@ ol{
 	border:solid #1221aa 2px;
 }
 
-#game{
-	display: none;
+.game{
+	margin-top: 20px;
+	border:solid blue 4px;
+	border-radius: 20px;
+	height: 100px;
+	width:400px;
+	margin-right: auto;
+	margin-left: auto;
+	padding: 10px;
+	background-image:-webkit-linear-gradient(top left, #FFFFFF 0%, #00A3EF 100%);
+	font-family: 'Finger Paint', cursive;
 }
 
-#game h1{
+#gameMain{
+}
+
+.game h1{
 	text-align: center;
 	margin-top: 10px;
 	overflow: hidden;
 }
 
-#game span{
+#question{
 	height:20px;
 	width:40px;
 	background-color: black;
@@ -117,6 +130,23 @@ ol{
 	margin-top: 2px;
 	color:white;
 	font-size: 30px;
+}
+
+#msg{
+	overflow: hidden;
+}
+
+#msg p{
+	margin-top: 20px;
+	text-align: center;
+	text-align: center;
+
+}
+
+#msg button{
+	margin-left: 180px;	
+	margin-top: 10px;
+
 }
 
 #colder{
@@ -155,11 +185,15 @@ ol{
 	color: white;
 }
 
-#guessButton{
+button{
 	border-radius: 20px;
 	background-color: green;
 	color:white;
 	border:solid #1221aa 2px;
+
+}
+
+#guessButton{
 }
 
 .try{
@@ -181,3 +215,12 @@ ol{
 form{
 	margin-top: 10px;
 }
+
+#track{
+	height:auto;
+}
+
+#track li{
+	display: inline;
+}
+

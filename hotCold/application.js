@@ -1,116 +1,199 @@
-var c=1;
+var startgame = $("#startGame");
+var $field = $("#guess");
+var $guess = $("#guessButton");
+var $main = $("#mainContainer");
+var $scan = $("#gameMain");
+var $msg = $("#msg");
+var $p = $("#msg p");
+var $track = $("#track");
+var r = 0;
 var guess = 0;
+var gameon = 0;
+var lastguess = 0;
+var st =0;
+var count = 0 ;
+var countBest = 0;
+var print;
 
-function checkinput (number){
-		if(number>=1 && number<=100){
-			return true;
-		}
-		else return false;
+$(document).ready(function(){
+	$scan.remove();
+	$msg.remove();
+	$track.remove();
+
+	$("#startGame").click(function(){
+		if(!gameon){
+			$("#startGame").hide();
+			newGame();
+			$msg.remove();
+			random();
+			gameon = 1;
+			scan();
+		}else {
+			window.alert("please first finish the current game");
+		};
+
+	});
+});
+
+function newGame(){
+
+	$("#mainContainer").css("background-image","url('green.jpg')");
+	
+	r = 0;
+	guess = 0;
+	lastguess = 0;
+	st = 0 ;
+	count = 0 ;
+	$("#next").show();
+	$(".gu").remove();
+
+
+};
+
+function random(){
+	r = Math.floor((Math.random()*100)+1);
+	if (r === 0){
+		r++;
+	};
+};
+
+function scan(){
+	count++;
+	$main.append($scan);
+	colderDesign();
+	if(lastguess>0){
+		$main.append($track);
+	};
+
+	if(count>2){
+		if(st == 1){
+			warmer();
+		} else if(st == 2) {
+			colder();
+		};
 	};
 
 
-
-
-function play(rand,lastguess){
-	$("#guess").keypress(function(e){
+	$field.val("");
+	$field.select();
+	
+	$field.keypress(function(e){
 		if(e.which==13){
 			$("#guessButton").trigger('click');
 			e.preventDefault();
-		}
-	});
-	$("#guessButton").click(function(){
-		guess = $("#guess").val();
-		if(guess===lastguess){
-			window.alert("Please chooses a different number");
-		}
-		else if (!checkinput(guess)){
-			window.alert("please enter a number between 1-100");
-		} else{
-			$(".scores:last-of-type").append("<li>" + guess + "</li");
-			check(rand,guess,lastguess);
-			lastguess=guess;
-			};
+		};
 	});
 
+
+	$guess.click(function(){
+		guess = $field.val();
+		if(check()){
+			$scan.remove();
+			$track.remove();
+			$main.append($msg);
+			$main.append($track);
+			compare(guess,r);
+			flip(r,guess,lastguess);
+			status();
+			next();
+		};
+	});
+
 };
 
-function colder(){
-	$("#mainContainer").css("background-image","-webkit-linear-gradient(top left, #FFFFFF 0%, #00A3EF 100%)");
-	$("#guessButton").css("background-color","#559adb")
+function check(){
+	if(guess>=1 && guess<=100){
+		return true;
+	}
+	else {window.alert("please entere a number between 1-100")};
 };
 
-function warmer(){
-	$("#mainContainer").css("background-image","-webkit-linear-gradient(top left, #FFFFFF 0%, #DE0707 100%)");
-	$("#guessButton").css("background-color","#ef0e51")
-
+function status (){
+	if (st === 100){
+		win();
+	} else if (lastguess === 0) {
+		$p.text("This is not the answer. You should try again.");
+	} else if (st === 2) {
+		colder();
+	} else {
+		warmer();
+	};
 };
 
-function win(){
-	$("#guessButton").text("you win");
-	c=1;
+function next (){
+	if(gameon){
+	$track.append("<li class='gu'> " + guess + "</li>")
 
-}
+	};
 
-function msg (status,miss){
-	if(miss==0){
-		$("#guessButton").text("That's not it, try again");
-	}else if (miss==="missed"){
-		$("#guessButton").text("You just missed it. you are getting " + status + ". try again");
-	}else{
-		$("#guessButton").text("you are getting " + status + ". try again");
+	$("#next").click(function(){
+		lastguess = guess;
+		$msg.remove();
+		scan();
+	});
+};
+
+function compare(guess,r){
+	if(guess == r){
+		 st = 100;
+	} else if (Math.abs(guess - r) < Math.abs(lastguess - r)){
+		 st = 1;
+	} else {
+		 st = 2;
 	};
 };
 
 function flip (rand,guess,lastguess){
+	flipmsg = "";
 	if (((guess<rand)&&(lastguess>rand))||((guess>rand)&&(lastguess<rand))){
-		return "missed";
-	}
-	return "same";
-}
-
-function check (rand,guess,lastguess){
-	var miss = flip(rand,guess,lastguess);
-	if (guess==rand){
-		win();
-	}
-	else if (lastguess==0) {
-		msg(0,0);
-	}
-	else if (Math.abs(guess - rand) < Math.abs(lastguess - rand)) {
-		warmer();
-		msg("warmer",miss);
-	}
-	else {
-		colder();
-		msg("colder",miss);
+		flipmsg = "you just missed it, and ";
 	};
 };
 
-function clean(count){
-			$("#mainContainer").css("background-image","radial-gradient(circle farthest-corner at center, #FFFFFF 0%, #5FEF2B 100%)");
-			$("#game").append("<ul class='scores'><li id='gameHead'> game " + count + "</li></ul>");
-			//$("#game:last-child").addClass("game"+count);
-			c=0;
-			guess=0;
-			$("#guess").val("");
+function colderDesign(){
+	$(".game").css("background-image","-webkit-linear-gradient(top left, #FFFFFF 0%, #00A3EF 100%)");
+	$(".game").css("border-color","blue")
+	$("button").css("background-color","blue")
+	$("button").css("border-color","blue")
 
 };
 
+function colder(){
+	colderDesign();
+	$("#mainContainer").css("background-image","url('colder.jpg')");
 
-$(document).ready(function(){
-	var count=0;
-	$("#startGame").click(function(){
-		if(c==1){
-			c=0;
-			count++;
-			clean(count);
-			if (count===1) {$("#game").show();};
-			var rand = Math.floor((Math.random()*100)+1);
-			$("span").text(rand);
-			play(rand,0,0);
-	} else {
-		window.alert("please finish this game first");
-			};
-	});
+	$p.text(flipmsg + "you are colder");
+};
 
-});
+function warmer(){
+	$(".game").css("background-image","-webkit-linear-gradient(top left, #FFFFFF 0%, #DE0707 100%)");
+	$(".game").css("border-color","red")
+	$("button").css("background-color","#ba1414")
+	$("button").css("border-color","#ba1414")
+
+	$("#mainContainer").css("background-image","url('warmer.jpg')");
+	$p.text(flipmsg + "you are warmer");
+};
+
+function win (){
+
+	colder();
+	$("#next").hide();
+	$("#mainContainer").css("background-image","url('win.jpg')");
+	print = " keep playing.";
+	if (countBest ===0 ) {
+		countBest = count;
+	}else if (countBest > count) {
+		print = "this is your best game! try to get it better!";
+		countBest = count;
+	} else{
+		print = "this is not your best game that was " + countBest +" attempts. Try again";
+	};
+
+	$p.text("Great work! you guessed it in " + count + " attempts. " + print);
+	
+	gameon = 0;
+	$(".gu").remove();
+	$track.remove();
+	$("#startGame").show();
+};
