@@ -22,6 +22,7 @@ $(document).ready(function(){
 
 	$("#startGame").click(function(){
 		if(!gameon){
+			$("#startGame").css("background-color","blue");
 			$("#startGame").hide();
 			newGame();
 			$msg.remove();
@@ -146,7 +147,7 @@ function compare(guess,r){
 function flip (rand,guess,lastguess){
 	flipmsg = "";
 	if (((guess<rand)&&(lastguess>rand))||((guess>rand)&&(lastguess<rand))){
-		flipmsg = "you just missed it, and ";
+		flipmsg = "you missed it, and ";
 	};
 };
 
